@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 abstract public class Cell {
     private int currentState;
@@ -9,19 +10,20 @@ abstract public class Cell {
 
     public Cell(int state, int row, int col){
         this.currentState = state;
+        this.nextState = state;
         this.row = row;
         this.col = col;
     }
 
-    private void fillCell(){
+    public void fillCell(){
         this.nextState = 1;
     }
 
-    private void emptyCell(){
+    public void emptyCell(){
         this.nextState = 0;
     }
 
-    private int getCurrentState(){
+    public int getCurrentState(){
         return this.currentState;
     }
 
@@ -35,7 +37,7 @@ abstract public class Cell {
 
 //    public abstract ArrayList<Cell> getNeighbors();
 
-    public abstract void updateCell();
+    public abstract void updateCell(List<Cell> neighbors);
 
 
 }
