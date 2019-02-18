@@ -1,3 +1,5 @@
+package CA;
+
 import java.util.List;
 
 public class GameOfLife extends Cell{
