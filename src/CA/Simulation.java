@@ -23,7 +23,7 @@ public class Simulation extends Application {
     public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
     public static final Paint BACKGROUND = Color.AZURE;
     //public static final String SIMULATION_CONFIG_FILE = ""
-    
+
     private Scene myScene;
     private Timeline myAnimation;
     private Text info;
