@@ -7,7 +7,6 @@ abstract public class Cell {
     private int row;
     private int col;
 
-
     public Cell(int state, int row, int col){
         this.currentState = state;
         this.row = row;
@@ -26,11 +25,13 @@ abstract public class Cell {
         return this.currentState;
     }
 
-    public ArrayList<Integer> getLocation(){
-        ArrayList<Integer> location = new ArrayList<>( Arrays.asList(this.row, this.col) );
-        return location;
+    public int getRow(){
+        return this.row;
     }
 
+    public int getCol(){
+        return this.col;
+    }
 
 //    public abstract ArrayList<Cell> getNeighbors();
 
