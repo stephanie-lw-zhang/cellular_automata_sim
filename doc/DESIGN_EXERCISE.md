@@ -14,5 +14,3 @@ What rules the cells need to follow. Also the grid size, colors, etc.
 
 * How is the GUI updated after all the cells have been updated?
 It will be updated with a step function most likely.
-
-

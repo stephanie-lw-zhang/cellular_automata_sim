@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -29,7 +30,7 @@ public class Simulation extends Application {
     private Text info;
     private Text end;
     private Group myRoot;
-    //private Grid myGrid;
+    private Grid myGrid;
 
     public void start(Stage stage){
         // attach scene to the stage and display it
@@ -46,6 +47,7 @@ public class Simulation extends Application {
 
     // Create the game's "scene": what shapes will be in the game and their starting properties
     private Scene setupGame (int width, int height, Paint background) {
+        myGrid = new SquareGrid("game.csv", SIZE);
         // create one top level collection to organize the things in the scene
         myRoot = new Group();
         //myGrid = new Grid(width, height, SIMULATION_CONFIG_FILE);
@@ -54,20 +56,16 @@ public class Simulation extends Application {
         // respond to input
         scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
         // create blocks according to configuration fill
-        addSimulationNodes(width, height);
+        addSimulationNodes();
         return scene;
     }
 
-    private void addSimulationNodes(int width, int height) {
-        /*
-        for(Cell cell:myGrid.getCells()){
-            addToScene(cell);
-        }
-         */
+    private void addSimulationNodes() {
+        myGrid.addToScene(myRoot);
     }
 
     private void step (double elapsedTime) {
-        //myGrid.update();
+        myGrid.update();
     }
     // What to do each time a key is pressed
     private void handleKeyInput (KeyCode code) {
