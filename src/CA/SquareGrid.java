@@ -7,31 +7,30 @@ import javafx.scene.shape.Rectangle;
 public class SquareGrid extends Grid {
     public SquareGrid(String source, double size) {
         super(source, size);
+        myCellWidth = calcCellWidth();
+        myCellHeight = calcCellHeight();
     }
 
     public void addToScene(Group myRoot) {
         for (int i = 0; i < myRow; i++) {
             for (int j = 0; j < myCol; j++) {
-                Rectangle cell = new Rectangle();
+                myCellShape = new Rectangle(currentX, currentY, myCellWidth, myCellHeight);
                 if (myGrid[i][j].getCurrentState() == 1) {
-                    cell.setFill(Color.web("#ed4b00"));
+                    myCellShape.setFill(Color.web("#008ecc"));
                 }
-                cell.setHeight(myCellHeight);
-                cell.setWidth(myCellWidth);
-                cell.setX(currentX);
-                cell.setY(currentY);
-                myRoot.getChildren().add(cell);
+                myRoot.getChildren().add(myCellShape);
                 currentX += myCellWidth;
             }
+            currentX = 0;
             currentY += myCellHeight;
         }
     }
 
-    public void calcCellLength() {
-        myCellWidth = gridSize/myCol;
+    public double calcCellWidth() {
+        return gridSize/myCol;
     }
 
-    public void calcCellHeight() {
-        myCellHeight = gridSize/myRow;
+    public double calcCellHeight() {
+        return gridSize/myRow;
     }
 }

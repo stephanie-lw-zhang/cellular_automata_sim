@@ -11,6 +11,7 @@ abstract class Grid {
     double myCellWidth, myCellHeight, currentX, currentY;
     Cell[][] myGrid;
     double gridSize;
+    Shape myCellShape;
 
     public Grid(String source, double size) {
         currentX = 0;
@@ -47,9 +48,9 @@ abstract class Grid {
         return null;
     }
 
-    abstract void calcCellLength();
+    abstract double calcCellWidth();
 
-    abstract void calcCellHeight();
+    abstract double calcCellHeight();
 
     public void update() {
 

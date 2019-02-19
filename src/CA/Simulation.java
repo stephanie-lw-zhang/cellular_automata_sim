@@ -10,10 +10,13 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.util.Random;
 
 import static javafx.application.Application.launch;
 
@@ -42,7 +45,7 @@ public class Simulation extends Application {
         myAnimation = new Timeline();
         myAnimation.setCycleCount(Timeline.INDEFINITE);
         myAnimation.getKeyFrames().add(frame);
-        myAnimation.pause();
+        myAnimation.play();
     }
 
     // Create the game's "scene": what shapes will be in the game and their starting properties
@@ -59,6 +62,7 @@ public class Simulation extends Application {
         addSimulationNodes();
         return scene;
     }
+
 
     private void addSimulationNodes() {
         myGrid.addToScene(myRoot);
