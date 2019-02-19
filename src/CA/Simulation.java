@@ -83,6 +83,7 @@ public class Simulation extends Application {
                 myAnimation.play();
             }
         }
+        if (code == KeyCode.ESCAPE) { System.exit(0); }
     }
 
     private void addToScene(Node n){
