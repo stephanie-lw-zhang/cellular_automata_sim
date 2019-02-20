@@ -10,11 +10,9 @@ public class PercolationCell extends Cell {
     @Override
     public void updateCell(List<Cell> neighbors) {
         if(this.getCurrentState()==-1){
-            System.out.println(this.getRow() + " " + this.getCol());
             return;
         } else{
             for(Cell each: neighbors){
-                System.out.println(this.getRow() + " " + this.getCol());
                 if(each.getCurrentState()==1){
                     fillCell();
                     break;
