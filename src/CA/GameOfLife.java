@@ -9,7 +9,7 @@ public class GameOfLife extends Cell{
     }
 
     @Override
-    public Cell updateCell(List<Cell> neighbors) {
+    public void updateCell(List<Cell> neighbors) {
         int numNeighborsAlive = 0;
         for(Cell each: neighbors){
             if(each.getCurrentState() == 1){
@@ -29,6 +29,5 @@ public class GameOfLife extends Cell{
                 this.fillCell();
             }
         }
-        return this;
     }
 }

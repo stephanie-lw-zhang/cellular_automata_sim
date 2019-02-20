@@ -39,7 +39,7 @@ abstract public class Cell {
 
 //    public abstract ArrayList<Cell> getNeighbors();
 
-    public abstract Cell updateCell(List<Cell> neighbors);
+    public abstract void updateCell(List<Cell> neighbors);
 
 
 }

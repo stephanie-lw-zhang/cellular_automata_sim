@@ -29,14 +29,12 @@ public class SquareGrid extends Grid {
         }
     }
 
-    public Cell[][] update() {
-        Cell[][] updatedGrid = new Cell[myRow][myCol];
+    public void update() {
         for (int i = 0; i < myRow; i++) {
             for (int j = 0; j < myCol; j++) {
-                updatedGrid[i][j] = myGrid[i][j].updateCell(getNeighbors(i,j));
+                myGrid[i][j].updateCell(getNeighbors(i,j));
             }
         }
-        return updatedGrid;
     }
 
     public List<Cell> getNeighbors(int row, int col) {
