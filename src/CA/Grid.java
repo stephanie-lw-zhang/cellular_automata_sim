@@ -59,5 +59,4 @@ abstract class Grid {
 
     abstract void addToScene(Group myRoot);
 
-
 }
