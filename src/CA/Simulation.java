@@ -48,6 +48,10 @@ public class Simulation extends Application {
         myAnimation.play();
     }
 
+    private void step (double elapsedTime) {
+        myGrid.update();
+    }
+
     // Create the game's "scene": what shapes will be in the game and their starting properties
     private Scene setupGame (int width, int height, Paint background) {
         myGrid = new SquareGrid("game.csv", SIZE);
@@ -68,9 +72,6 @@ public class Simulation extends Application {
         myGrid.addToScene(myRoot);
     }
 
-    private void step (double elapsedTime) {
-        myGrid.update();
-    }
     // What to do each time a key is pressed
     private void handleKeyInput (KeyCode code) {
         // move the player
@@ -84,10 +85,6 @@ public class Simulation extends Application {
             }
         }
         if (code == KeyCode.ESCAPE) { System.exit(0); }
-    }
-
-    private void addToScene(Node n){
-        myRoot.getChildren().add(n);
     }
 
     /**
