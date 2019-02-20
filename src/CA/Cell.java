@@ -9,6 +9,7 @@ abstract public class Cell {
     private int row;
     private int col;
 
+
     public Cell(int state, int row, int col){
         this.currentState = state;
         this.nextState = state;

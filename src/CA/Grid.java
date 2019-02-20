@@ -6,17 +6,16 @@ import javafx.scene.shape.Shape;
 import java.util.List;
 import java.util.Scanner;
 
-abstract class Grid {
-    String myGame;
-    int myRow, myCol;
-    double myCellWidth, myCellHeight, currentX, currentY;
-    Cell[][] myGrid;
-    double gridSize;
-    Shape myCellShape;
+abstract public class Grid {
+    private String myGame;
+    private int myRow, myCol;
+    private double myCellWidth, setMyCellHeight, currentX, currentY;
+    private Cell[][] myGrid;
+    private double gridSize;
 
     public Grid(String source, double size) {
-        currentX = 0;
-        currentY = 0;
+        currentX = 0.0;
+        currentY = 0.0;
         gridSize = size;
 
         Scanner sc = new Scanner(Grid.class.getClassLoader().getResourceAsStream(source));
@@ -58,6 +57,54 @@ abstract class Grid {
     abstract List<Cell> getNeighbors(int row, int col);
 
     abstract void addToScene(Group myRoot);
+
+    public double getMyCellWidth(){
+        return this.myCellWidth;
+    }
+
+    public void setMyCellWidth(double num){
+        this.setMyCellHeight = num;
+    }
+
+    public double getCurrentX(){
+        return this.currentX;
+    }
+
+    public void setCurrentX(double num){
+        this.currentX = num;
+    }
+
+    public double getCurrentY(){
+        return this.currentY;
+    }
+
+    public void setCurrentY(double num){
+        this.currentY = num;
+    }
+
+    public double getMyCellHeight(){
+        return this.setMyCellHeight;
+    }
+
+    public void setMyCellHeight(double num){
+        this.setMyCellHeight = num;
+    }
+
+    public int getMyRow(){
+        return myRow;
+    }
+
+    public int getMyCol(){
+        return myCol;
+    }
+
+    public Cell[][] getMyGrid(){
+        return myGrid;
+    }
+
+    public double getGridSize(){
+        return this.gridSize;
+    }
 
 
 }
