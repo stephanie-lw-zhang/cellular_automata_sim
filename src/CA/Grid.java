@@ -60,6 +60,9 @@ abstract public class Grid {
         if (myGrid[i][j].getCurrentState() == 1) {
             myGrid[i][j].getCellMyShape().setFill(Color.web("#008ecc"));
         }
+        else if (myGrid[i][j].getCurrentState() == 0) {
+            myGrid[i][j].getCellMyShape().setFill(Color.web("#FFFFFF"));
+        }
         else {
             myGrid[i][j].getCellMyShape().setFill(Color.web("#000000"));
         }
