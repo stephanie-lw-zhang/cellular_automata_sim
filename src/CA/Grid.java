@@ -53,7 +53,7 @@ abstract class Grid {
 
     abstract double calcCellHeight();
 
-    abstract Cell[][] update();
+    abstract void update();
 
     abstract List<Cell> getNeighbors(int row, int col);
 
