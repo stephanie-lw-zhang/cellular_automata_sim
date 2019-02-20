@@ -1,7 +1,8 @@
 package CA;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
+import javafx.scene.shape.Shape;
+
 import java.util.List;
 
 abstract public class Cell {
@@ -9,6 +10,8 @@ abstract public class Cell {
     private int nextState;
     private int row;
     private int col;
+    private Shape myCellShape;
+
 
     public Cell(int state, int row, int col){
         this.currentState = state;
@@ -37,7 +40,17 @@ abstract public class Cell {
         return this.col;
     }
 
-//    public abstract ArrayList<Cell> getNeighbors();
+    public void setCurrentToNextState(){
+        this.currentState = this.nextState;
+    }
+
+    public Shape getCellMyShape() {
+        return myCellShape;
+    }
+
+    public void setCellShape(Shape shape) {
+        myCellShape = shape;
+    }
 
     public abstract void updateCell(List<Cell> neighbors);
 

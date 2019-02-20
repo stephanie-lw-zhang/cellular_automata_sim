@@ -6,17 +6,17 @@ import javafx.scene.shape.Shape;
 import java.util.List;
 import java.util.Scanner;
 
-abstract class Grid {
-    String myGame;
-    int myRow, myCol;
-    double myCellWidth, myCellHeight, currentX, currentY;
-    Cell[][] myGrid;
-    double gridSize;
-    Shape myCellShape;
+abstract public class Grid {
+    private String myGame;
+    private int myRow, myCol;
+    private double myCellWidth, myCellHeight, currentX, currentY;
+    private Cell[][] myGrid;
+    private Shape[][] cellShapes;
+    private double gridSize;
 
     public Grid(String source, double size) {
-        currentX = 0;
-        currentY = 0;
+        currentX = 0.0;
+        currentY = 0.0;
         gridSize = size;
 
         Scanner sc = new Scanner(Grid.class.getClassLoader().getResourceAsStream(source));
@@ -44,7 +44,7 @@ abstract class Grid {
             return new GameOfLife(state,row,col);
         }
         else if (myGame.equals("Percolation")) {
-            //return new Percolation(state,row,col);
+            return new PercolationCell(state,row,col);
         }
         return null;
     }
@@ -58,5 +58,53 @@ abstract class Grid {
     abstract List<Cell> getNeighbors(int row, int col);
 
     abstract void addToScene(Group myRoot);
+
+    public void setMyCellWidth(double num){
+        myCellHeight = num;
+    }
+
+    public void setMyCellHeight(double num){
+        myCellHeight = num;
+    }
+
+    public int getMyRow(){
+        return myRow;
+    }
+
+    public int getMyCol(){
+        return myCol;
+    }
+
+    public Cell[][] getMyGrid(){
+        return myGrid;
+    }
+
+    public double getGridSize(){
+        return this.gridSize;
+    }
+
+    public double getMyCellWidth() {
+        return myCellWidth;
+    }
+
+    public double getMyCellHeight() {
+        return myCellHeight;
+    }
+
+    public double getCurrentX() {
+        return currentX;
+    }
+
+    public double getCurrentY() {
+        return currentY;
+    }
+
+    public void setCurrentX(double x) {
+        currentX += x;
+    }
+
+    public void setCurrentY(double y) {
+        currentY += y;
+    }
 
 }
