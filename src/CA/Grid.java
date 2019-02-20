@@ -51,12 +51,12 @@ abstract public class Grid {
     public void addUpdatedToScene() {
         for (int i = 0; i < getMyRow(); i++) {
             for (int j = 0; j < getMyCol(); j++) {
-                addColorToScreen(i, j);
+                addColorToScene(i, j);
             }
         }
     }
 
-    public void addColorToScreen (int i, int j) {
+    public void addColorToScene(int i, int j) {
         if (myGrid[i][j].getCurrentState() == 1) {
             myGrid[i][j].getCellMyShape().setFill(Color.web("#008ecc"));
         }
@@ -65,15 +65,15 @@ abstract public class Grid {
         }
     }
 
-    abstract double calcCellWidth();
+    public abstract double calcCellWidth();
 
-    abstract double calcCellHeight();
+    public abstract double calcCellHeight();
 
-    abstract void update();
+    public abstract void update();
 
-    abstract List<Cell> getNeighbors(int row, int col);
+    public abstract List<Cell> getNeighbors(int row, int col);
 
-    abstract void addToScene(Group myRoot);
+    public abstract void addToScene(Group myRoot);
 
     public void setMyCellWidth(double num){
         myCellWidth = num;
@@ -122,5 +122,4 @@ abstract public class Grid {
     public void setCurrentY(double y) {
         currentY = y;
     }
-
 }

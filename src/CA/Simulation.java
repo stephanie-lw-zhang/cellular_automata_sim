@@ -90,10 +90,6 @@ public class Simulation extends Application {
                 myAnimation.play();
             }
         }
-        if (code == KeyCode.S) {
-            myGrid.update();
-            myGrid.addUpdatedToScene();
-        }
         if (code == KeyCode.ESCAPE) { System.exit(0); }
     }
 
