@@ -11,7 +11,6 @@ abstract public class Grid {
     private int myRow, myCol;
     private double myCellWidth, myCellHeight, currentX, currentY;
     private Cell[][] myGrid;
-    private Shape[][] cellShapes;
     private double gridSize;
 
     public Grid(String source, double size) {
@@ -60,7 +59,7 @@ abstract public class Grid {
     abstract void addToScene(Group myRoot);
 
     public void setMyCellWidth(double num){
-        myCellHeight = num;
+        myCellWidth = num;
     }
 
     public void setMyCellHeight(double num){
@@ -100,11 +99,11 @@ abstract public class Grid {
     }
 
     public void setCurrentX(double x) {
-        currentX += x;
+        currentX = x;
     }
 
     public void setCurrentY(double y) {
-        currentY += y;
+        currentY = y;
     }
 
 }
