@@ -34,6 +34,7 @@ public class Simulation extends Application {
     private Text end;
     private Group myRoot;
     private Grid myGrid;
+    private double timer;
 
     public void start(Stage stage){
         // attach scene to the stage and display it
@@ -49,7 +50,12 @@ public class Simulation extends Application {
     }
 
     private void step (double elapsedTime) {
-        myGrid.update();
+        timer+=elapsedTime;
+        if(timer>1) {
+            myGrid.update();
+            myGrid.addUpdatedToScene(myRoot);
+            timer=0;
+        }
     }
 
     // Create the game's "scene": what shapes will be in the game and their starting properties

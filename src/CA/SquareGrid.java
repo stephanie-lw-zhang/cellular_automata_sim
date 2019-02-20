@@ -17,11 +17,8 @@ public class SquareGrid extends Grid {
     public void addToScene(Group myRoot) {
         for (int i = 0; i < getMyRow(); i++) {
             for (int j = 0; j < getMyCol(); j++) {
-                System.out.println(getCurrentX());
                 getMyGrid()[i][j].setCellShape(new Rectangle(getCurrentX(),getCurrentY(),getMyCellWidth(),getMyCellHeight()));
-                if (getMyGrid()[i][j].getCurrentState() == 1) {
-                    getMyGrid()[i][j].getCellMyShape().setFill(Color.web("#008ecc"));
-                }
+                addColorToScreen(i, j);
                 myRoot.getChildren().add(getMyGrid()[i][j].getCellMyShape());
                 double tempX = getCurrentX() + getMyCellWidth();
                 setCurrentX(tempX);
