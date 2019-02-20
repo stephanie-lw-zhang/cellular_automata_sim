@@ -1,6 +1,7 @@
 package CA;
 
 import javafx.scene.Group;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
 import java.util.List;
@@ -46,6 +47,20 @@ abstract public class Grid {
             return new PercolationCell(state,row,col);
         }
         return null;
+    }
+
+    public void addUpdatedToScene(Group myRoot) {
+        for (int i = 0; i < getMyRow(); i++) {
+            for (int j = 0; j < getMyCol(); j++) {
+                addColorToScreen(i, j);
+            }
+        }
+    }
+
+    public void addColorToScreen (int i, int j) {
+        if (myGrid[i][j].getCurrentState() == 1) {
+            myGrid[i][j].getCellMyShape().setFill(Color.web("#008ecc"));
+        }
     }
 
     abstract double calcCellWidth();
