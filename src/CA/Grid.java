@@ -3,6 +3,7 @@ package CA;
 import javafx.scene.Group;
 import javafx.scene.shape.Shape;
 
+import java.util.List;
 import java.util.Scanner;
 
 abstract class Grid {
@@ -52,9 +53,9 @@ abstract class Grid {
 
     abstract double calcCellHeight();
 
-    public void update() {
+    abstract Cell[][] update();
 
-    }
+    abstract List<Cell> getNeighbors(int row, int col);
 
     abstract void addToScene(Group myRoot);
 

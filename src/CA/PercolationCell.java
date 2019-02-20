@@ -8,9 +8,9 @@ public class PercolationCell extends Cell {
         super(state, row, col);
     }
     @Override
-    public void updateCell(List<Cell> neighbors) {
+    public Cell updateCell(List<Cell> neighbors) {
         if(this.getCurrentState()==-1){
-            return;
+            return null;
         } else{
             for(Cell each: neighbors){
                 if(each.getCurrentState()==1){
@@ -19,5 +19,6 @@ public class PercolationCell extends Cell {
                 }
             }
         }
+        return this;
     }
 }
