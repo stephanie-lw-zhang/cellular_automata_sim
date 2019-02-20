@@ -60,7 +60,7 @@ abstract public class Grid {
     abstract void addToScene(Group myRoot);
 
     public void setMyCellWidth(double num){
-        myCellHeight = num;
+        myCellWidth = num;
     }
 
     public void setMyCellHeight(double num){
@@ -80,7 +80,7 @@ abstract public class Grid {
     }
 
     public double getGridSize(){
-        return this.gridSize;
+        return gridSize;
     }
 
     public double getMyCellWidth() {
