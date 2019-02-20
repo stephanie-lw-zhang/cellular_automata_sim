@@ -10,77 +10,74 @@ import java.util.List;
 public class SquareGrid extends Grid {
     public SquareGrid(String source, double size) {
         super(source, size);
-        myCellWidth = calcCellWidth();
-        myCellHeight = calcCellHeight();
+        setMyCellWidth( calcCellWidth() );
+        setMyCellHeight( calcCellHeight() );
     }
 
     public void addToScene(Group myRoot) {
-        for (int i = 0; i < myRow; i++) {
-            for (int j = 0; j < myCol; j++) {
-                myCellShape = new Rectangle(currentX, currentY, myCellWidth, myCellHeight);
-                if (myGrid[i][j].getCurrentState() == 1) {
-                    myCellShape.setFill(Color.web("#008ecc"));
-                }
-                myRoot.getChildren().add(myCellShape);
-                currentX += myCellWidth;
-            }
-            currentX = 0;
-            currentY += myCellHeight;
-        }
+//        for (int i = 0; i < getMyRow(); i++) {
+//            for (int j = 0; j < getMyCol(); j++) {
+//                setCurrentX( getCurrentX() += getMyCellWidth() );
+//            }
+//            setCurrentX( 0 );
+//            setCurrentY( getCurrentY() += getMyCellHeight() );
+//
+//        }
     }
 
-    public Cell[][] update() {
-        Cell[][] updatedGrid = new Cell[myRow][myCol];
-        for (int i = 0; i < myRow; i++) {
-            for (int j = 0; j < myCol; j++) {
-                updatedGrid[i][j] = myGrid[i][j].updateCell(getNeighbors(i,j));
+    public void update() {
+        for (int i = 0; i < getMyRow(); i++) {
+            for (int j = 0; j < getMyCol(); j++) {
+                getMyGrid()[i][j].updateCell(getNeighbors(i,j));
             }
         }
-        return updatedGrid;
+        for (int i = 0; i < getMyRow(); i++) {
+            for (int j = 0; j < getMyCol(); j++) {
+                getMyGrid()[i][j].setCurrentToNextState();
+            }
+        }
     }
 
     public List<Cell> getNeighbors(int row, int col) {
         List<Cell> neighborCells = new ArrayList<>();
-        if (row != myRow - 1) {
-            neighborCells.add(myGrid[row+1][col]);
-            if (col == 0) { neighborCells.add(myGrid[row+1][myCol -1]); }
-            else if (col != 0) { neighborCells.add(myGrid[row+1][col - 1]); }
-            if (col == myCol - 1) { neighborCells.add(myGrid[row+1][0]); }
-            else if (col != myCol - 1) { neighborCells.add(myGrid[row+1][col + 1]); }
+        if (row != getMyRow() - 1) {
+            neighborHelper( col, neighborCells, row+1 );
         }
-        else if (row == myRow - 1) {
-            neighborCells.add(myGrid[0][col]);
-            if (col == 0) { neighborCells.add(myGrid[0][myCol -1]); }
-            else if (col != 0) { neighborCells.add(myGrid[0][col - 1]); }
-            if (col == myCol -1) { neighborCells.add(myGrid[0][0]); }
-            else if (col != myCol - 1) { neighborCells.add(myGrid[0][col + 1]); }
+        else if (row == getMyRow() - 1) {
+            neighborHelper( col, neighborCells, 0 );
         }
         if (row != 0) {
-            neighborCells.add(myGrid[row-1][col]);
-            if (col == 0) { neighborCells.add(myGrid[row-1][myCol -1]); }
-            else if (col != 0) { neighborCells.add(myGrid[row-1][col - 1]); }
-            if (col == myCol - 1) { neighborCells.add(myGrid[row-1][0]); }
-            else if (col != myCol - 1) { neighborCells.add(myGrid[row-1][col + 1]); }
+            neighborHelper( col, neighborCells, row - 1 );
         }
         else if (row == 0) {
-            neighborCells.add(myGrid[myRow-1][col]);
-            if (col == 0) { neighborCells.add(myGrid[myRow-1][myCol - 1]); }
-            else if (col != 0) { neighborCells.add(myGrid[myRow-1][col - 1]); }
-            if (col == myCol - 1) { neighborCells.add(myGrid[myRow-1][0]); }
-            else if (col != myCol - 1) { neighborCells.add(myGrid[myRow-1][col + 1]); }
+            neighborHelper( col, neighborCells, getMyRow()-1 );
         }
-        if (col != 0) { neighborCells.add(myGrid[row][col - 1]); }
-        else if (col == 0) { neighborCells.add(myGrid[row][myCol - 1]); }
-        if (col != myCol - 1) { neighborCells.add(myGrid[row][col + 1]); }
-        else if (col == myCol -1 ) { neighborCells.add(myGrid[row][0]); }
+        if (col != 0) { neighborCells.add(getMyGrid()[row][col - 1]); }
+        else if (col == 0) { neighborCells.add(getMyGrid()[row][getMyCol() - 1]); }
+        if (col != getMyCol() - 1) { neighborCells.add(getMyGrid()[row][col + 1]); }
+        else if (col == getMyCol() -1 ) { neighborCells.add(getMyGrid()[row][0]); }
         return neighborCells;
     }
 
+    private void neighborHelper(int col, List<Cell> neighborCells, int i) {
+        neighborCells.add( getMyGrid()[i][col] );
+        if (col == 0) {
+            neighborCells.add( getMyGrid()[i][getMyCol() - 1] );
+        } else if (col != 0) {
+            neighborCells.add( getMyGrid()[i][col - 1] );
+        }
+        if (col == getMyCol() - 1) {
+            neighborCells.add( getMyGrid()[i][0] );
+        } else if (col != getMyCol() - 1) {
+            neighborCells.add( getMyGrid()[i][col + 1] );
+        }
+    }
+
     public double calcCellWidth() {
-        return gridSize/myCol;
+        return getGridSize()/getMyCol();
     }
 
     public double calcCellHeight() {
-        return gridSize/myRow;
+        return getGridSize()/getMyRow();
     }
 }

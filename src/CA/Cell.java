@@ -9,6 +9,7 @@ abstract public class Cell {
     private int row;
     private int col;
 
+
     public Cell(int state, int row, int col){
         this.currentState = state;
         this.nextState = state;
@@ -41,7 +42,7 @@ abstract public class Cell {
     }
 
 
-    public abstract Cell updateCell(List<Cell> neighbors);
+    public abstract void updateCell(List<Cell> neighbors);
 
 
 }
