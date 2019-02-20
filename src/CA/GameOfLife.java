@@ -12,7 +12,6 @@ public class GameOfLife extends Cell{
     public void updateCell(List<Cell> neighbors) {
         int numNeighborsAlive = 0;
         for(Cell each: neighbors){
-            System.out.println(each.getRow() + " " + each.getCol());
             if(each.getCurrentState() == 1){
                 numNeighborsAlive++;
             }

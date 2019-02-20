@@ -34,6 +34,7 @@ public class Simulation extends Application {
     private Text end;
     private Group myRoot;
     private Grid myGrid;
+    private double timer;
 
     public void start(Stage stage){
         // attach scene to the stage and display it
@@ -49,9 +50,11 @@ public class Simulation extends Application {
     }
 
     private void step (double elapsedTime) {
-        if (elapsedTime%5 == 0) {
+        timer+=elapsedTime;
+        if(timer>1) {
             myGrid.update();
-            myGrid.addUpdatedToScene(myRoot);
+            myGrid.addUpdatedToScene();
+            timer=0;
         }
     }
 
@@ -89,7 +92,7 @@ public class Simulation extends Application {
         }
         if (code == KeyCode.S) {
             myGrid.update();
-            myGrid.addUpdatedToScene(myRoot);
+            myGrid.addUpdatedToScene();
         }
         if (code == KeyCode.ESCAPE) { System.exit(0); }
     }

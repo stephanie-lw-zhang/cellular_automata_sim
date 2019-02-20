@@ -61,6 +61,9 @@ abstract public class Grid {
         if (myGrid[i][j].getCurrentState() == 1) {
             myGrid[i][j].getCellMyShape().setFill(Color.web("#008ecc"));
         }
+        else {
+            myGrid[i][j].getCellMyShape().setFill(Color.web("#000000"));
+        }
     }
 
     abstract double calcCellWidth();
