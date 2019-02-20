@@ -1,7 +1,6 @@
 package CA;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
 
 abstract public class Cell {
@@ -37,7 +36,10 @@ abstract public class Cell {
         return this.col;
     }
 
-//    public abstract ArrayList<Cell> getNeighbors();
+    public void setCurrentToNextState(){
+        this.currentState = this.nextState;
+    }
+
 
     public abstract void updateCell(List<Cell> neighbors);
 
