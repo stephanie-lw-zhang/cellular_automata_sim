@@ -10,19 +10,25 @@ import java.util.List;
 public class SquareGrid extends Grid {
     public SquareGrid(String source, double size) {
         super(source, size);
-        setMyCellWidth( calcCellWidth() );
-        setMyCellHeight( calcCellHeight() );
+        setMyCellWidth(calcCellWidth());
+        setMyCellHeight(calcCellHeight());
     }
 
     public void addToScene(Group myRoot) {
-//        for (int i = 0; i < getMyRow(); i++) {
-//            for (int j = 0; j < getMyCol(); j++) {
-//                setCurrentX( getCurrentX() += getMyCellWidth() );
-//            }
-//            setCurrentX( 0 );
-//            setCurrentY( getCurrentY() += getMyCellHeight() );
-//
-//        }
+        for (int i = 0; i < getMyRow(); i++) {
+            for (int j = 0; j < getMyCol(); j++) {
+                getMyGrid()[i][j].setCellShape(new Rectangle(getCurrentX(),getCurrentY(),getMyCellWidth(),getMyCellHeight()));
+                if (getMyGrid()[i][j].getCurrentState() == 1) {
+                    getMyGrid()[i][j].getCellMyShape().setFill(Color.web("#008ecc"));
+                }
+                myRoot.getChildren().add(getMyGrid()[i][j].getCellMyShape());
+                double tempX = getCurrentX() + getMyCellWidth();
+                setCurrentX(tempX);
+            }
+            setCurrentX(0);
+            double tempY = getCurrentY() + getMyCellHeight();
+            setCurrentY(tempY);
+        }
     }
 
     public void update() {

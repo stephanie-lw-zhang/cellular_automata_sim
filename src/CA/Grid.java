@@ -9,8 +9,9 @@ import java.util.Scanner;
 abstract public class Grid {
     private String myGame;
     private int myRow, myCol;
-    private double myCellWidth, setMyCellHeight, currentX, currentY;
+    private double myCellWidth, myCellHeight, currentX, currentY;
     private Cell[][] myGrid;
+    private Shape[][] cellShapes;
     private double gridSize;
 
     public Grid(String source, double size) {
@@ -43,7 +44,7 @@ abstract public class Grid {
             return new GameOfLife(state,row,col);
         }
         else if (myGame.equals("Percolation")) {
-            //return new Percolation(state,row,col);
+            return new PercolationCell(state,row,col);
         }
         return null;
     }
@@ -58,36 +59,12 @@ abstract public class Grid {
 
     abstract void addToScene(Group myRoot);
 
-    public double getMyCellWidth(){
-        return this.myCellWidth;
-    }
-
     public void setMyCellWidth(double num){
-        this.setMyCellHeight = num;
-    }
-
-    public double getCurrentX(){
-        return this.currentX;
-    }
-
-    public void setCurrentX(double num){
-        this.currentX = num;
-    }
-
-    public double getCurrentY(){
-        return this.currentY;
-    }
-
-    public void setCurrentY(double num){
-        this.currentY = num;
-    }
-
-    public double getMyCellHeight(){
-        return this.setMyCellHeight;
+        myCellHeight = num;
     }
 
     public void setMyCellHeight(double num){
-        this.setMyCellHeight = num;
+        myCellHeight = num;
     }
 
     public int getMyRow(){
@@ -106,5 +83,28 @@ abstract public class Grid {
         return this.gridSize;
     }
 
+    public double getMyCellWidth() {
+        return myCellWidth;
+    }
+
+    public double getMyCellHeight() {
+        return myCellHeight;
+    }
+
+    public double getCurrentX() {
+        return currentX;
+    }
+
+    public double getCurrentY() {
+        return currentY;
+    }
+
+    public void setCurrentX(double x) {
+        currentX += x;
+    }
+
+    public void setCurrentY(double y) {
+        currentY += y;
+    }
 
 }

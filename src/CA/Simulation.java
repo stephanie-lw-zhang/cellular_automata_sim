@@ -50,6 +50,7 @@ public class Simulation extends Application {
 
     private void step (double elapsedTime) {
         myGrid.update();
+        myGrid.addToScene(myRoot);
     }
 
     // Create the game's "scene": what shapes will be in the game and their starting properties
