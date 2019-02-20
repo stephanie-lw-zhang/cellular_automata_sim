@@ -49,8 +49,10 @@ public class Simulation extends Application {
     }
 
     private void step (double elapsedTime) {
-        myGrid.update();
-        myGrid.addUpdatedToScene(myRoot);
+        if (elapsedTime%5 == 0) {
+            myGrid.update();
+            myGrid.addUpdatedToScene(myRoot);
+        }
     }
 
     // Create the game's "scene": what shapes will be in the game and their starting properties
@@ -84,6 +86,10 @@ public class Simulation extends Application {
             } else {
                 myAnimation.play();
             }
+        }
+        if (code == KeyCode.S) {
+            myGrid.update();
+            myGrid.addUpdatedToScene(myRoot);
         }
         if (code == KeyCode.ESCAPE) { System.exit(0); }
     }

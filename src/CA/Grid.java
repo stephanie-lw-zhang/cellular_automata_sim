@@ -49,7 +49,7 @@ abstract public class Grid {
         return null;
     }
 
-    public void addUpdatedToScene(Group myRoot) {
+    public void addUpdatedToScene() {
         for (int i = 0; i < getMyRow(); i++) {
             for (int j = 0; j < getMyCol(); j++) {
                 addColorToScreen(i, j);
