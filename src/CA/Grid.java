@@ -2,7 +2,6 @@ package CA;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Shape;
 
 import java.util.List;
 import java.util.Scanner;
@@ -41,7 +40,7 @@ abstract public class Grid {
 
     private Cell cellType(int state, int row, int col) {
         if (myGame.equals("Game Of Life")) {
-            return new GameOfLife(state,row,col);
+            return new GameOfLifeCell(state,row,col);
         }
         else if (myGame.equals("Percolation")) {
             return new PercolationCell(state,row,col);
