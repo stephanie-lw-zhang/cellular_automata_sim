@@ -55,5 +55,8 @@ abstract public class Cell {
     public abstract void updateCell(List<Cell> neighbors);
 
 
+    public int getNextState(){
+        return nextState;
+    }
 }
 
