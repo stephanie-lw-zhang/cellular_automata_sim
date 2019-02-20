@@ -49,7 +49,7 @@ abstract public class Grid {
         return null;
     }
 
-    public void addUpdatedToScene(Group myRoot) {
+    public void addUpdatedToScene() {
         for (int i = 0; i < getMyRow(); i++) {
             for (int j = 0; j < getMyCol(); j++) {
                 addColorToScreen(i, j);
@@ -60,6 +60,9 @@ abstract public class Grid {
     public void addColorToScreen (int i, int j) {
         if (myGrid[i][j].getCurrentState() == 1) {
             myGrid[i][j].getCellMyShape().setFill(Color.web("#008ecc"));
+        }
+        else {
+            myGrid[i][j].getCellMyShape().setFill(Color.web("#000000"));
         }
     }
 

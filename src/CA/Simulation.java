@@ -53,7 +53,7 @@ public class Simulation extends Application {
         timer+=elapsedTime;
         if(timer>1) {
             myGrid.update();
-            myGrid.addUpdatedToScene(myRoot);
+            myGrid.addUpdatedToScene();
             timer=0;
         }
     }
@@ -89,6 +89,10 @@ public class Simulation extends Application {
             } else {
                 myAnimation.play();
             }
+        }
+        if (code == KeyCode.S) {
+            myGrid.update();
+            myGrid.addUpdatedToScene();
         }
         if (code == KeyCode.ESCAPE) { System.exit(0); }
     }
