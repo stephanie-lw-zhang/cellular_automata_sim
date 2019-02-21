@@ -33,15 +33,12 @@ public class SquareGrid extends Grid {
     public void update() {
         for (int i = 0; i < getMyRow(); i++) {
             for (int j = 0; j < getMyCol(); j++) {
-//                System.out.println(getNeighbors( i,j ));
                 getMyGrid()[i][j].updateCell(getNeighbors(i,j));
-//                System.out.println(getMyGrid()[i][j].getNextState());
             }
         }
         for (int i = 0; i < getMyRow(); i++) {
             for (int j = 0; j < getMyCol(); j++) {
                 getMyGrid()[i][j].setCurrentToNextState();
-
             }
         }
     }

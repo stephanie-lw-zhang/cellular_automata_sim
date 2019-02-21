@@ -9,21 +9,22 @@ public class SimulationTest {
     private static final String TEST_CONFIG_FILE_1="test1.csv";
     private static final String TEST_CONFIG_FILE_2="test2.csv";
     private static final String TEST_CONFIG_FILE_3="test3.csv";
+    private static final String TEST_CONFIG_FILE_4="test4.csv";
     private static final int SCREEN_SIZE = 400;
     private static final int SCREEN_SIZE_2 = 600;
     private Grid grid1;
     private Grid grid2;
     private Grid grid3;
     private Grid grid4;
+    private Grid grid5;
 
     @BeforeEach
     public void setUp(){
-
         grid1 = new SquareGrid(TEST_CONFIG_FILE_1,SCREEN_SIZE,SCREEN_SIZE);
         grid2 = new SquareGrid(TEST_CONFIG_FILE_2,SCREEN_SIZE,SCREEN_SIZE);
         grid3 = new SquareGrid(TEST_CONFIG_FILE_3,SCREEN_SIZE_2,SCREEN_SIZE_2);
         grid4 = new SquareGrid(TEST_CONFIG_FILE_2,SCREEN_SIZE,SCREEN_SIZE_2);
-
+        grid5 = new SquareGrid(TEST_CONFIG_FILE_4,SCREEN_SIZE,SCREEN_SIZE);
     }
 
     @Test
@@ -133,6 +134,32 @@ public class SimulationTest {
         assertEquals(0, grid3.calcCellHeight());
     }
 
+    @Test
+    public void testGridUpdateWithPercolation() {
+        boolean allFilled = true;
+        grid1.update();
+        for (int i = 0; i < grid1.getMyRow(); i++) {
+            for(int j = 0; j < grid1.getMyCol(); j++) {
+                if (grid1.getMyGrid()[i][j].getCurrentState() == 0) {
+                    allFilled = false;
+                }
+            }
+        }
+        assertTrue(allFilled);
+    }
 
-
+    @Test
+    public void testGridUpdateWithGameOfLife() {
+        boolean colFilled = true;
+        grid5.getMyGrid()[2][1].fillCellCurrent();
+        grid5.getMyGrid()[2][2].fillCellCurrent();
+        grid5.getMyGrid()[2][3].fillCellCurrent();
+        grid5.update();
+        for (int i = 1; i < 3; i++) {
+            if (grid5.getMyGrid()[i][2].getCurrentState() == 0) {
+                colFilled = false;
+            }
+        }
+        assertTrue(colFilled);
+    }
 }
