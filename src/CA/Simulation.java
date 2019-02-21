@@ -48,7 +48,7 @@ public class Simulation extends Application {
 
     // Create the game's "scene": what shapes will be in the game and their starting properties
     private Scene setupGame (int width, int height, Paint background) {
-        myGrid = new SquareGrid(SIMULATION_CONFIG_FILE, SIZE);
+        myGrid = new SquareGrid(SIMULATION_CONFIG_FILE, SIZE, SIZE);
         // create one top level collection to organize the things in the scene
         myRoot = new Group();
         // create a place to see the shapes
