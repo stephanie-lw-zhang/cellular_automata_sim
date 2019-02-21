@@ -55,5 +55,13 @@ abstract public class Cell {
     public abstract void updateCell(List<Cell> neighbors);
 
 
+    public int getNextState(){
+        return nextState;
+    }
+
+    //For testing only
+    public void fillCellCurrent(){
+        this.currentState = 1;
+    }
 }
 

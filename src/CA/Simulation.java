@@ -15,7 +15,7 @@ import javafx.util.Duration;
 
 public class Simulation extends Application {
     public static final int SIZE = 400;
-    public static final int FRAMES_PER_SECOND = 1;
+    public static final int FRAMES_PER_SECOND = 2;
     //public static final double MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
     public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
     public static final Paint BACKGROUND = Color.AZURE;
@@ -48,7 +48,7 @@ public class Simulation extends Application {
 
     // Create the game's "scene": what shapes will be in the game and their starting properties
     private Scene setupGame (int width, int height, Paint background) {
-        myGrid = new SquareGrid(SIMULATION_CONFIG_FILE, SIZE);
+        myGrid = new SquareGrid(SIMULATION_CONFIG_FILE, SIZE, SIZE);
         // create one top level collection to organize the things in the scene
         myRoot = new Group();
         // create a place to see the shapes

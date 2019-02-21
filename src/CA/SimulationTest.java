@@ -8,13 +8,29 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SimulationTest {
-    private static final String TEST_CONFIG_FILE_1= "PercolationTest1.csv";
+    private static final String PERC_TEST_CONFIG_FILE_1= "PercolationTest1.csv";
+    private static final String PERC_TEST_CONFIG_FILE_2="PercolationTest2.csv";
     private static final int SCREEN_SIZE = 400;
     private Grid PercolationSquareGrid;
+    private static final String TEST_CONFIG_FILE_1="test1.csv";
+    private static final String TEST_CONFIG_FILE_2="test2.csv";
+    private static final String TEST_CONFIG_FILE_3="test3.csv";
+    private static final String TEST_CONFIG_FILE_4="test4.csv";
+    private static final int SCREEN_SIZE_2 = 600;
+    private Grid grid1;
+    private Grid grid2;
+    private Grid grid3;
+    private Grid grid4;
+    private Grid grid5;
 
     @BeforeEach
     public void setUp(){
-        PercolationSquareGrid = new SquareGrid(TEST_CONFIG_FILE_1,SCREEN_SIZE);
+        grid1 = new SquareGrid(TEST_CONFIG_FILE_1,SCREEN_SIZE,SCREEN_SIZE);
+        grid2 = new SquareGrid(TEST_CONFIG_FILE_2,SCREEN_SIZE,SCREEN_SIZE);
+        grid3 = new SquareGrid(TEST_CONFIG_FILE_3,SCREEN_SIZE_2,SCREEN_SIZE_2);
+        grid4 = new SquareGrid(TEST_CONFIG_FILE_2,SCREEN_SIZE,SCREEN_SIZE_2);
+        grid5 = new SquareGrid(TEST_CONFIG_FILE_4,SCREEN_SIZE,SCREEN_SIZE);
+        PercolationSquareGrid = new SquareGrid(PERC_TEST_CONFIG_FILE_1,SCREEN_SIZE,SCREEN_SIZE);
     }
 
     @Test
@@ -36,7 +52,7 @@ public class SimulationTest {
 
     @Test
     public void testUpdateCellPercolationStayBlocked(){
-        var blockedGrid = new SquareGrid("PercolationTest2.csv",SCREEN_SIZE);
+        var blockedGrid = new SquareGrid(PERC_TEST_CONFIG_FILE_2,SCREEN_SIZE,SCREEN_SIZE);
         var blockedState = -1;
         assertEquals(-1, blockedGrid.getMyGrid()[1][1].getCurrentState());
         blockedGrid.getMyGrid()[1][1].updateCell(blockedGrid.getNeighbors(1,1));
@@ -107,4 +123,133 @@ public class SimulationTest {
 //
 //        }
 //    }
+
+    @Test
+    public void testFillCell(){
+        grid1.getMyGrid()[0][0].fillCell();
+        int expected = 1;
+        assertEquals( expected, grid1.getMyGrid()[0][0].getNextState() );
+    }
+
+    @Test
+    public void testEmptyCell(){
+        grid1.getMyGrid()[1][1].emptyCell();
+        int expected = 0;
+        assertEquals( expected, grid1.getMyGrid()[1][1].getNextState() );
+    }
+
+    @Test
+    public void testGameOfLifeUpdateUnderpopulation(){
+        grid2.getMyGrid()[1][1].fillCellCurrent();
+        grid2.getMyGrid()[1][1].updateCell(grid2.getNeighbors(1,1));
+        grid2.getMyGrid()[1][1].setCurrentToNextState();
+        int expected = 0;
+        assertEquals( expected, grid2.getMyGrid()[1][1].getCurrentState() );
+    }
+
+    @Test
+    public void testGameOfLifeUpdateNextGen(){
+        grid2.getMyGrid()[1][1].fillCellCurrent();
+        grid2.getMyGrid()[1][0].fillCellCurrent();
+        grid2.getMyGrid()[1][2].fillCellCurrent();
+        for (int i = 0; i < grid2.getMyRow(); i++) {
+            for (int j = 0; j < grid2.getMyCol(); j++) {
+                grid2.getMyGrid()[i][j].updateCell(grid2.getNeighbors(i,j));
+            }
+        }
+        for (int i = 0; i < grid2.getMyRow(); i++) {
+            for (int j = 0; j < grid2.getMyCol(); j++) {
+                grid2.getMyGrid()[i][j].setCurrentToNextState();
+            }
+        }
+        int expected = 1;
+        assertEquals(expected, grid2.getMyGrid()[1][1].getCurrentState());
+    }
+
+    @Test
+    public void testGameOfLifeUpdateOverpopulation(){
+        grid2.getMyGrid()[1][1].fillCellCurrent();
+        grid2.getMyGrid()[1][0].fillCellCurrent();
+        grid2.getMyGrid()[1][2].fillCellCurrent();
+        grid2.getMyGrid()[0][0].fillCellCurrent();
+        grid2.getMyGrid()[2][2].fillCellCurrent();
+        for (int i = 0; i < grid2.getMyRow(); i++) {
+            for (int j = 0; j < grid2.getMyCol(); j++) {
+                grid2.getMyGrid()[i][j].updateCell(grid2.getNeighbors(i,j));
+            }
+        }
+        for (int i = 0; i < grid2.getMyRow(); i++) {
+            for (int j = 0; j < grid2.getMyCol(); j++) {
+                grid2.getMyGrid()[i][j].setCurrentToNextState();
+            }
+        }
+        int expected = 0;
+        assertEquals(expected, grid2.getMyGrid()[1][1].getCurrentState());
+    }
+
+    @Test
+    public void testGameOfLifeUpdateReproduction(){
+        grid2.getMyGrid()[0][2].fillCellCurrent();
+        grid2.getMyGrid()[2][1].fillCellCurrent();
+        grid2.getMyGrid()[0][0].fillCellCurrent();
+        for (int i = 0; i < grid2.getMyRow(); i++) {
+            for (int j = 0; j < grid2.getMyCol(); j++) {
+                grid2.getMyGrid()[i][j].updateCell(grid2.getNeighbors(i,j));
+            }
+        }
+        for (int i = 0; i < grid2.getMyRow(); i++) {
+            for (int j = 0; j < grid2.getMyCol(); j++) {
+                grid2.getMyGrid()[i][j].setCurrentToNextState();
+            }
+        }
+        int expected = 1;
+        assertEquals(expected, grid2.getMyGrid()[1][1].getCurrentState());
+    }
+
+    @Test
+    public void testCalculationCellWidth() {
+        assertEquals(400/3.0, grid1.calcCellWidth());
+        assertEquals(400/3.0, grid4.calcCellWidth());
+    }
+
+    @Test
+    public void testCalculationCellHeight() {
+        assertEquals(400/3.0, grid1.calcCellHeight());
+        assertEquals(200, grid4.calcCellHeight());
+    }
+
+    @Test
+    public void testCellDimensionsNoCells() {
+        assertEquals(0, grid3.calcCellWidth());
+        assertEquals(0, grid3.calcCellHeight());
+    }
+
+    @Test
+    public void testGridUpdateWithPercolation() {
+        boolean allFilled = true;
+        grid1.update();
+        for (int i = 0; i < grid1.getMyRow(); i++) {
+            for(int j = 0; j < grid1.getMyCol(); j++) {
+                if (grid1.getMyGrid()[i][j].getCurrentState() == 0) {
+                    allFilled = false;
+                }
+            }
+        }
+        assertTrue(allFilled);
+    }
+
+    @Test
+    public void testGridUpdateWithGameOfLife() {
+        boolean colFilled = true;
+        grid5.getMyGrid()[2][1].fillCellCurrent();
+        grid5.getMyGrid()[2][2].fillCellCurrent();
+        grid5.getMyGrid()[2][3].fillCellCurrent();
+        grid5.update();
+        for (int i = 1; i < 3; i++) {
+            if (grid5.getMyGrid()[i][2].getCurrentState() == 0) {
+                colFilled = false;
+            }
+        }
+        assertTrue(colFilled);
+    }
 }

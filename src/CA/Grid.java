@@ -11,13 +11,17 @@ abstract public class Grid {
     private int myRow, myCol;
     private double myCellWidth, myCellHeight, currentX, currentY;
     private Cell[][] myGrid;
-    private double gridSize;
+    private int gridHeight, gridWidth;
 
-    public Grid(String source, double size) {
+    public Grid(String source, int width, int height) {
         currentX = 0.0;
         currentY = 0.0;
-        gridSize = size;
+        gridWidth = width;
+        gridHeight = height;
+        initializeGridArray(source);
+    }
 
+    private void initializeGridArray(String source) {
         Scanner sc = new Scanner(Grid.class.getClassLoader().getResourceAsStream(source));
         myGame = sc.nextLine();
         String[] sizes = sc.nextLine().split(",");
@@ -98,8 +102,12 @@ abstract public class Grid {
         return myGrid;
     }
 
-    public double getGridSize(){
-        return this.gridSize;
+    public int getGridHeight(){
+        return gridHeight;
+    }
+
+    public int getGridWidth(){
+        return gridWidth;
     }
 
     public double getMyCellWidth() {
