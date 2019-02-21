@@ -58,5 +58,10 @@ abstract public class Cell {
     public int getNextState(){
         return nextState;
     }
+
+    //For testing only
+    public void fillCellCurrent(){
+        this.currentState = 1;
+    }
 }
 
