@@ -11,13 +11,13 @@ abstract public class Grid {
     private int myRow, myCol;
     private double myCellWidth, myCellHeight, currentX, currentY;
     private Cell[][] myGrid;
-    private int gridLength, gridWidth;
+    private int gridHeight, gridWidth;
 
-    public Grid(String source, int length, int width) {
+    public Grid(String source, int width, int height) {
         currentX = 0.0;
         currentY = 0.0;
-        gridLength = length;
         gridWidth = width;
+        gridHeight = height;
         initializeGridArray(source);
     }
 
@@ -102,8 +102,8 @@ abstract public class Grid {
         return myGrid;
     }
 
-    public int getGridLength(){
-        return gridLength;
+    public int getGridHeight(){
+        return gridHeight;
     }
 
     public int getGridWidth(){

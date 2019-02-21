@@ -30,7 +30,7 @@ public class Simulation extends Application {
 
     public void start(Stage stage){
         // attach scene to the stage and display it
-        myScene = setupGame(SIZE, SIZE, BACKGROUND);
+        myScene = setupGame(SIZE, 600, BACKGROUND);
         stage.setScene(myScene);
         stage.show();
         // attach "game loop" to timeline to play it
@@ -48,7 +48,7 @@ public class Simulation extends Application {
 
     // Create the game's "scene": what shapes will be in the game and their starting properties
     private Scene setupGame (int width, int height, Paint background) {
-        myGrid = new SquareGrid(SIMULATION_CONFIG_FILE, SIZE, SIZE);
+        myGrid = new SquareGrid(SIMULATION_CONFIG_FILE, SIZE, 600);
         // create one top level collection to organize the things in the scene
         myRoot = new Group();
         // create a place to see the shapes
