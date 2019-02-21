@@ -85,4 +85,5 @@ public class SquareGrid extends Grid {
     public double calcCellHeight() {
         return getGridSize()/getMyRow();
     }
+
 }
