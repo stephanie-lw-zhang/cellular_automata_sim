@@ -2,7 +2,6 @@ package CA;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Shape;
 
 import java.util.List;
 import java.util.Scanner;
@@ -41,7 +40,7 @@ abstract public class Grid {
 
     private Cell cellType(int state, int row, int col) {
         if (myGame.equals("Game Of Life")) {
-            return new GameOfLife(state,row,col);
+            return new GameOfLifeCell(state,row,col);
         }
         else if (myGame.equals("Percolation")) {
             return new PercolationCell(state,row,col);
@@ -49,29 +48,35 @@ abstract public class Grid {
         return null;
     }
 
-    public void addUpdatedToScene(Group myRoot) {
+    public void addUpdatedToScene() {
         for (int i = 0; i < getMyRow(); i++) {
             for (int j = 0; j < getMyCol(); j++) {
-                addColorToScreen(i, j);
+                addColorToScene(i, j);
             }
         }
     }
 
-    public void addColorToScreen (int i, int j) {
+    public void addColorToScene(int i, int j) {
         if (myGrid[i][j].getCurrentState() == 1) {
             myGrid[i][j].getCellMyShape().setFill(Color.web("#008ecc"));
         }
+        else if (myGrid[i][j].getCurrentState() == 0) {
+            myGrid[i][j].getCellMyShape().setFill(Color.web("#FFFFFF"));
+        }
+        else {
+            myGrid[i][j].getCellMyShape().setFill(Color.web("#000000"));
+        }
     }
 
-    abstract double calcCellWidth();
+    public abstract double calcCellWidth();
 
-    abstract double calcCellHeight();
+    public abstract double calcCellHeight();
 
-    abstract void update();
+    public abstract void update();
 
-    abstract List<Cell> getNeighbors(int row, int col);
+    public abstract List<Cell> getNeighbors(int row, int col);
 
-    abstract void addToScene(Group myRoot);
+    public abstract void addToScene(Group myRoot);
 
     public void setMyCellWidth(double num){
         myCellWidth = num;
@@ -120,5 +125,4 @@ abstract public class Grid {
     public void setCurrentY(double y) {
         currentY = y;
     }
-
 }

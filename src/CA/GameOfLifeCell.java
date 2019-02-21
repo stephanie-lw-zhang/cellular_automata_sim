@@ -2,9 +2,9 @@ package CA;
 
 import java.util.List;
 
-public class GameOfLife extends Cell{
+public class GameOfLifeCell extends Cell{
 
-    public GameOfLife(int state, int row, int col){
+    public GameOfLifeCell(int state, int row, int col){
         super(state, row, col);
     }
 
