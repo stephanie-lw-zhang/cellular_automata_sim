@@ -14,6 +14,7 @@ public class SimulationTest {
     private Grid grid1;
     private Grid grid2;
     private Grid grid3;
+    private Grid grid4;
 
     @BeforeEach
     public void setUp(){
@@ -21,6 +22,7 @@ public class SimulationTest {
         grid1 = new SquareGrid(TEST_CONFIG_FILE_1,SCREEN_SIZE,SCREEN_SIZE);
         grid2 = new SquareGrid(TEST_CONFIG_FILE_2,SCREEN_SIZE,SCREEN_SIZE);
         grid3 = new SquareGrid(TEST_CONFIG_FILE_3,SCREEN_SIZE_2,SCREEN_SIZE_2);
+        grid4 = new SquareGrid(TEST_CONFIG_FILE_2,SCREEN_SIZE,SCREEN_SIZE_2);
 
     }
 
@@ -114,9 +116,21 @@ public class SimulationTest {
     }
 
     @Test
-    public void testCalculationCellWidth(){
+    public void testCalculationCellWidth() {
         assertEquals(400/3.0, grid1.calcCellWidth());
+        assertEquals(400/3.0, grid4.calcCellWidth());
+    }
+
+    @Test
+    public void testCalculationCellHeight() {
+        assertEquals(400/3.0, grid1.calcCellHeight());
+        assertEquals(200, grid4.calcCellHeight());
+    }
+
+    @Test
+    public void testCellDimensionsNoCells() {
         assertEquals(0, grid3.calcCellWidth());
+        assertEquals(0, grid3.calcCellHeight());
     }
 
 

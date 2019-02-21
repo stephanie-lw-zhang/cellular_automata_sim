@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SquareGrid extends Grid {
-    public SquareGrid(String source, int length, int width) {
-        super(source, length, width);
+    public SquareGrid(String source, int width, int height) {
+        super(source, width, height);
         setMyCellWidth(calcCellWidth());
         setMyCellHeight(calcCellHeight());
     }
@@ -83,14 +83,14 @@ public class SquareGrid extends Grid {
 
     public double calcCellWidth() {
         if (getMyCol() != 0) {
-            return getGridLength()/(double)getMyCol();
+            return getGridWidth()/(double)getMyCol();
         }
         return 0;
     }
 
     public double calcCellHeight() {
         if (getMyRow() != 0) {
-            return getGridWidth()/(double)getMyRow();
+            return getGridHeight()/(double)getMyRow();
         }
         return 0;
     }
