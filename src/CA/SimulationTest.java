@@ -79,15 +79,18 @@ public class SimulationTest {
         var cols = PercolationSquareGrid.getMyGrid()[0].length;
         //rows
         for(int edgeCol=0;edgeCol<cols;edgeCol++){
-            int squareI = 0;
-            int squareJ = edgeCol;
-            List<Cell> neighborList = PercolationSquareGrid.getNeighbors(squareI,squareJ);
-            testGetNeighborSquareGridHelper(rows, cols, squareI, squareJ, neighborList);
+            List<Cell> neighborList = PercolationSquareGrid.getNeighbors(0,edgeCol);
+            testGetNeighborSquareGridHelper(rows, cols, 0, edgeCol, neighborList);
+            neighborList = PercolationSquareGrid.getNeighbors(rows-1,edgeCol);
+            testGetNeighborSquareGridHelper(rows, cols, rows-1, edgeCol, neighborList);
         }
         //cols
-//        for(int edgeRow=0;edgeRow<rows;edgeRow++){
-//
-//        }
+        for(int edgeRow=0;edgeRow<rows;edgeRow++){
+            List<Cell> neighborList = PercolationSquareGrid.getNeighbors(edgeRow,0);
+            testGetNeighborSquareGridHelper(rows, cols, edgeRow, 0, neighborList);
+            neighborList = PercolationSquareGrid.getNeighbors(edgeRow,cols-1);
+            testGetNeighborSquareGridHelper(rows, cols, edgeRow, cols-1, neighborList);
+        }
 
     }
 
