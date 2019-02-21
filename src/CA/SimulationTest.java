@@ -8,15 +8,19 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SimulationTest {
     private static final String TEST_CONFIG_FILE_1="test1.csv";
     private static final String TEST_CONFIG_FILE_2="test2.csv";
+    private static final String TEST_CONFIG_FILE_3="test3.csv";
     private static final int SCREEN_SIZE = 400;
+    private static final int SCREEN_SIZE_2 = 600;
     private Grid grid1;
     private Grid grid2;
+    private Grid grid3;
 
     @BeforeEach
     public void setUp(){
 
-        grid1 = new SquareGrid(TEST_CONFIG_FILE_1,SCREEN_SIZE);
-        grid2 = new SquareGrid(TEST_CONFIG_FILE_2,SCREEN_SIZE);
+        grid1 = new SquareGrid(TEST_CONFIG_FILE_1,SCREEN_SIZE,SCREEN_SIZE);
+        grid2 = new SquareGrid(TEST_CONFIG_FILE_2,SCREEN_SIZE,SCREEN_SIZE);
+        grid3 = new SquareGrid(TEST_CONFIG_FILE_3,SCREEN_SIZE_2,SCREEN_SIZE_2);
 
     }
 
@@ -108,6 +112,13 @@ public class SimulationTest {
         int expected = 1;
         assertEquals(expected, grid2.getMyGrid()[1][1].getCurrentState());
     }
+
+    @Test
+    public void testCalculationCellWidth(){
+        assertEquals(400/3.0, grid1.calcCellWidth());
+        assertEquals(0, grid3.calcCellWidth());
+    }
+
 
 
 }
