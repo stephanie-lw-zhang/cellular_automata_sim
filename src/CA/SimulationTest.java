@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SimulationTest {
     private static final String PERC_TEST_CONFIG_FILE_1= "PercolationTest1.csv";
-    private static final String PERC_TEST_CONFIG_FILE_2="PercolationTest2.csv";
+    private static final String PERC_TEST_CONFIG_FILE_2= "PercolationTest2.csv";
     private static final int SCREEN_SIZE = 400;
-    private Grid PercolationSquareGrid;
     private static final String TEST_CONFIG_FILE_1="test1.csv";
     private static final String TEST_CONFIG_FILE_2="test2.csv";
     private static final String TEST_CONFIG_FILE_3="test3.csv";
@@ -22,15 +22,16 @@ public class SimulationTest {
     private Grid grid3;
     private Grid grid4;
     private Grid grid5;
+    private Grid PercolationSquareGrid;
 
     @BeforeEach
     public void setUp(){
+        PercolationSquareGrid = new SquareGrid(PERC_TEST_CONFIG_FILE_1,SCREEN_SIZE,SCREEN_SIZE);
         grid1 = new SquareGrid(TEST_CONFIG_FILE_1,SCREEN_SIZE,SCREEN_SIZE);
         grid2 = new SquareGrid(TEST_CONFIG_FILE_2,SCREEN_SIZE,SCREEN_SIZE);
         grid3 = new SquareGrid(TEST_CONFIG_FILE_3,SCREEN_SIZE_2,SCREEN_SIZE_2);
         grid4 = new SquareGrid(TEST_CONFIG_FILE_2,SCREEN_SIZE,SCREEN_SIZE_2);
         grid5 = new SquareGrid(TEST_CONFIG_FILE_4,SCREEN_SIZE,SCREEN_SIZE);
-        PercolationSquareGrid = new SquareGrid(PERC_TEST_CONFIG_FILE_1,SCREEN_SIZE,SCREEN_SIZE);
     }
 
     @Test
@@ -54,9 +55,9 @@ public class SimulationTest {
     public void testUpdateCellPercolationStayBlocked(){
         var blockedGrid = new SquareGrid(PERC_TEST_CONFIG_FILE_2,SCREEN_SIZE,SCREEN_SIZE);
         var blockedState = -1;
-        assertEquals(-1, blockedGrid.getMyGrid()[1][1].getCurrentState());
+        assertEquals(blockedState, blockedGrid.getMyGrid()[1][1].getCurrentState());
         blockedGrid.getMyGrid()[1][1].updateCell(blockedGrid.getNeighbors(1,1));
-        assertEquals(-1, blockedGrid.getMyGrid()[1][1].getCurrentState());
+        assertEquals(blockedState, blockedGrid.getMyGrid()[1][1].getCurrentState());
     }
 
     @Test
@@ -121,11 +122,6 @@ public class SimulationTest {
         assertEquals(0,neighborList.size());
     }
 
-//    private int testGetNeighborReturnExpectedNeighbors(Grid grid){
-//        if(grid.getClass().isInstance()){
-//
-//        }
-//    }
 
     @Test
     public void testFillCell(){
