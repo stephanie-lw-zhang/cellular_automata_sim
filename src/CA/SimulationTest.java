@@ -121,12 +121,6 @@ public class SimulationTest {
         assertEquals(0,neighborList.size());
     }
 
-//    private int testGetNeighborReturnExpectedNeighbors(Grid grid){
-//        if(grid.getClass().isInstance()){
-//
-//        }
-//    }
-
     @Test
     public void testFillCell(){
         grid1.getMyGrid()[0][0].fillCell();
