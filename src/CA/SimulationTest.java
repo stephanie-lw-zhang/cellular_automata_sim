@@ -5,13 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SimulationTest {
     private static final String PERC_TEST_CONFIG_FILE_1= "PercolationTest1.csv";
-    private static final String PERC_TEST_CONFIG_FILE_2="PercolationTest2.csv";
     private static final int SCREEN_SIZE = 400;
-    private Grid PercolationSquareGrid;
     private static final String TEST_CONFIG_FILE_1="test1.csv";
     private static final String TEST_CONFIG_FILE_2="test2.csv";
     private static final String TEST_CONFIG_FILE_3="test3.csv";
@@ -30,29 +29,28 @@ public class SimulationTest {
         grid3 = new SquareGrid(TEST_CONFIG_FILE_3,SCREEN_SIZE_2,SCREEN_SIZE_2);
         grid4 = new SquareGrid(TEST_CONFIG_FILE_2,SCREEN_SIZE,SCREEN_SIZE_2);
         grid5 = new SquareGrid(TEST_CONFIG_FILE_4,SCREEN_SIZE,SCREEN_SIZE);
-        PercolationSquareGrid = new SquareGrid(PERC_TEST_CONFIG_FILE_1,SCREEN_SIZE,SCREEN_SIZE);
     }
 
     @Test
     public void testSetCurrentToNextState(){
-        var current = PercolationSquareGrid.getMyGrid()[1][1].getCurrentState();
-        PercolationSquareGrid.update();
-        assertEquals(current, PercolationSquareGrid.getMyGrid()[1][1].getCurrentState());
+        var current = grid1.getMyGrid()[1][1].getCurrentState();
+        grid1.update();
+        assertEquals(current, grid1.getMyGrid()[1][1].getCurrentState());
     }
 
     @Test
     public void testUpdateCellPercolationFill(){
         var expectedStartState = 0;
-        var startState = PercolationSquareGrid.getMyGrid()[1][0].getCurrentState();
+        var startState = grid1.getMyGrid()[1][0].getCurrentState();
         assertEquals(expectedStartState,startState);
-        PercolationSquareGrid.update();
+        grid1.update();
         var expectedNextState = 1;
-        assertEquals(expectedNextState,PercolationSquareGrid.getMyGrid()[1][0].getCurrentState());
+        assertEquals(expectedNextState,grid1.getMyGrid()[1][0].getCurrentState());
     }
 
     @Test
     public void testUpdateCellPercolationStayBlocked(){
-        var blockedGrid = new SquareGrid(PERC_TEST_CONFIG_FILE_2,SCREEN_SIZE,SCREEN_SIZE);
+        var blockedGrid = new SquareGrid(PERC_TEST_CONFIG_FILE_1,SCREEN_SIZE,SCREEN_SIZE);
         var blockedState = -1;
         assertEquals(-1, blockedGrid.getMyGrid()[1][1].getCurrentState());
         blockedGrid.getMyGrid()[1][1].updateCell(blockedGrid.getNeighbors(1,1));
@@ -61,12 +59,12 @@ public class SimulationTest {
 
     @Test
     public void testGetNeighborSquareGridNormal(){
-        var rows = PercolationSquareGrid.getMyGrid().length;
-        var cols = PercolationSquareGrid.getMyGrid()[0].length;
+        var rows = grid1.getMyGrid().length;
+        var cols = grid1.getMyGrid()[0].length;
 
         for(int iterRow=1;iterRow<rows-1;iterRow++){
             for(int iterCol=1;iterCol<cols-1;iterCol++){
-                List<Cell> neighborList = PercolationSquareGrid.getNeighbors(iterRow,iterCol);
+                List<Cell> neighborList = grid1.getNeighbors(iterRow,iterCol);
                 assertEquals(8, neighborList.size());
                 testGetNeighborSquareGridHelper(rows, cols, iterRow, iterCol, neighborList);
             }
@@ -75,20 +73,20 @@ public class SimulationTest {
 
     @Test
     public void testGetNeighborSquareGridEdgeCases(){
-        var rows = PercolationSquareGrid.getMyGrid().length;
-        var cols = PercolationSquareGrid.getMyGrid()[0].length;
+        var rows = grid1.getMyGrid().length;
+        var cols = grid1.getMyGrid()[0].length;
         //rows
         for(int edgeCol=0;edgeCol<cols;edgeCol++){
-            List<Cell> neighborList = PercolationSquareGrid.getNeighbors(0,edgeCol);
+            List<Cell> neighborList = grid1.getNeighbors(0,edgeCol);
             testGetNeighborSquareGridHelper(rows, cols, 0, edgeCol, neighborList);
-            neighborList = PercolationSquareGrid.getNeighbors(rows-1,edgeCol);
+            neighborList = grid1.getNeighbors(rows-1,edgeCol);
             testGetNeighborSquareGridHelper(rows, cols, rows-1, edgeCol, neighborList);
         }
         //cols
         for(int edgeRow=0;edgeRow<rows;edgeRow++){
-            List<Cell> neighborList = PercolationSquareGrid.getNeighbors(edgeRow,0);
+            List<Cell> neighborList = grid1.getNeighbors(edgeRow,0);
             testGetNeighborSquareGridHelper(rows, cols, edgeRow, 0, neighborList);
-            neighborList = PercolationSquareGrid.getNeighbors(edgeRow,cols-1);
+            neighborList = grid1.getNeighbors(edgeRow,cols-1);
             testGetNeighborSquareGridHelper(rows, cols, edgeRow, cols-1, neighborList);
         }
 
