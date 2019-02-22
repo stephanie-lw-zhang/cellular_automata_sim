@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SimulationTest {
     private static final String PERC_TEST_CONFIG_FILE_1= "PercolationTest1.csv";
@@ -121,11 +122,6 @@ public class SimulationTest {
         assertEquals(0,neighborList.size());
     }
 
-//    private int testGetNeighborReturnExpectedNeighbors(Grid grid){
-//        if(grid.getClass().isInstance()){
-//
-//        }
-//    }
 
     @Test
     public void testFillCell(){
