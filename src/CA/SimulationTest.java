@@ -122,7 +122,6 @@ public class SimulationTest {
         assertEquals(0,neighborList.size());
     }
 
-
     @Test
     public void testFillCell(){
         grid1.getMyGrid()[0][0].fillCell();
