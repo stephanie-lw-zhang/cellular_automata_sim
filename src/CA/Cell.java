@@ -20,9 +20,9 @@ abstract public class Cell {
         this.col = col;
     }
 
-    public void fillCell(){
-        this.nextState = 1;
-    }
+    public void fillCell(int state){
+        this.nextState = state;
+    };
 
     public void emptyCell(){
         this.nextState = 0;
@@ -62,6 +62,10 @@ abstract public class Cell {
     //For testing only
     public void fillCellCurrent(){
         this.currentState = 1;
+    }
+
+    public void setNextState(int state){
+        this.nextState = state;
     }
 }
 

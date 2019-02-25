@@ -3,6 +3,8 @@ package CA;
 import java.util.List;
 
 public class PercolationCell extends Cell {
+    private int fillState = 1;
+
 
     public PercolationCell(int state, int row, int col){
         super(state, row, col);
@@ -14,7 +16,7 @@ public class PercolationCell extends Cell {
         } else{
             for(Cell each: neighbors){
                 if(each.getCurrentState()==1){
-                    fillCell();
+                    fillCell(fillState);
                     break;
                 }
             }
