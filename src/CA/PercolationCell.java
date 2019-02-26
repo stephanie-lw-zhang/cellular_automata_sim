@@ -9,6 +9,7 @@ public class PercolationCell extends Cell {
     public PercolationCell(int state, int row, int col){
         super(state, row, col);
     }
+
     @Override
     public void updateCell(List<Cell> neighbors) {
         if(this.getCurrentState()==-1){
