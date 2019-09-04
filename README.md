@@ -3,41 +3,47 @@ simulation
 
 This project implements a cellular automata simulator.
 
-Names:
+Names: Stephanie Zhang, Connie Wu, Edward Hsieh
 
-### Timeline
+###Timeline
+Start Date:
+Finish Date: March 9
+Hours Spent: ~40 hours
 
-Start Date: 
+###Primary Roles
+Edward focused on visualization. Connie and Stephanie split up rule implementation.
 
-Finish Date: 
+###Resources Used
 
-Hours Spent:
-
-### Primary Roles
-
-
-### Resources Used
+StackOverFlow
+OracleDocs
 
 
-### Running the Program
-
-Main class:
-
-Data files needed: 
-
+###Running the Program
+Main class: SimulationMain
+Data files needed: All included within program
 Interesting data files:
-
 Features implemented:
 
+Triangle, Square, Hexagonal Grids
+Toroidal, Finite, and Spherical Edge Policy
+Complete, Cardinal, and Diagonal Neighbor Arrangement
+
+Exceptions:
+
+SimulationException -> general exception from simulation
+SimulationUIException -> exception from interactions with the GUI
+MissingResourceException -> Configuration file insufficient
+FileNotFoundException -> Configuration file not found
+
+Edge of Choice:
+Sphere
+Neighbor of Choice:
+Diaganals, which is found using the difference between complete and cardinal neighborhoods. However, for hexagons complete and cardinal are the same, so we implemented a special version where the neighborhood are along the slanted edges of the hexagon (4 total).
 Assumptions or Simplifications:
+
+Dynamic parameters are spelled the same within a configuration file and are of the same case at each character
 
 Known Bugs:
 
-Extra credit:
-
-
-### Notes
-
-
-### Impressions
-
+Changing animation speed does not work very well sometimes
