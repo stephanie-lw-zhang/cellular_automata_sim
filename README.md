@@ -5,21 +5,20 @@ This project implements a cellular automata simulator.
 
 Names: Stephanie Zhang, Connie Wu, Edward Hsieh
 
-###Timeline
+### Timeline
 Start Date:
 Finish Date: March 9
 Hours Spent: ~40 hours
 
-###Primary Roles
+### Primary Roles
 Edward focused on visualization. Connie and Stephanie split up rule implementation.
 
-###Resources Used
+### Resources Used
+- StackOverFlow
+- OracleDocs
 
-StackOverFlow
-OracleDocs
 
-
-###Running the Program
+### Running the Program
 Main class: SimulationMain
 Data files needed: All included within program
 Interesting data files:
